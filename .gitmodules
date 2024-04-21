@@ -1,3 +1,9 @@
 [submodule "libs/hump"]
 	path = libs/hump
 	url = https://github.com/vrld/hump
+[submodule "libs/Concord"]
+	path = libs/Concord
+	url = https://github.com/Keyslam-Group/Concord
+[submodule "libs/batteries"]
+	path = libs/batteries
+	url = https://github.com/1bardesign/batteries

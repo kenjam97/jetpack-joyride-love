@@ -1,6 +1,11 @@
--- local Gamestate = require 'libs.hump.gamestate'
+local Gamestate = require 'libs.hump.gamestate'
+local game = require 'states.game'
 
 local mainMenu = {}
+
+local function startGame()
+    Gamestate.switch(game)
+end
 
 local function quit()
     love.event.quit()
@@ -24,10 +29,9 @@ end
 
 function mainMenu:enter()
     self.elements = {
-        createButton("Start", 400, 300, function()
-            print("Start")
-        end),
-        createButton("Quit", 400, 400, quit)
+        createButton("Start", 400, 300, startGame),
+        createButton("Options", 400, 400, function() print('Options not implemented') end),
+        createButton("Quit", 400, 500, quit)
     }
 end
 
@@ -35,13 +39,13 @@ function mainMenu:update()
     local mouseX, mouseY = love.mouse.getPosition()
     for i, element in ipairs(self.elements) do
         if mouseX >= element.x and mouseX <= element.x + element.width and
-           mouseY >= element.y and mouseY <= element.y + element.height then
-           self.selectedIndex = i
+            mouseY >= element.y and mouseY <= element.y + element.height then
+            self.selectedIndex = i
 
-           if love.mouse.isDown(1) then
-               element.callback()
-           end
-       end
+            if love.mouse.isDown(1) then
+                element.callback()
+            end
+        end
     end
 end
 
